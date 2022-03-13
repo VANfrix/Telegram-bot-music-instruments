@@ -1,0 +1,1 @@
+USER_EMOJI = [':guitar:']
