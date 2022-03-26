@@ -28,9 +28,9 @@ def get_avito():
                 "name_saler": name_saler,
                 "place_guitar": place_guitar
             })
-            price_guitar
         print(result_find)
         return result_find
+
 if __name__ == "__main__":
     get_avito()
     
