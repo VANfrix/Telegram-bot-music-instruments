@@ -1,17 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
 
-def get_html(url):
+def get_html(url, search_string):
     try:
-        result = requests.get(url)
+        result = requests.get(url, params = {'q': search_string})
         result.raise_for_status()
         return result.text
     except(requests.RequestException, ValueError):
         print("Сетевая ошибка")
         return False
 
-def get_avito():
-    html = get_html("https://www.avito.ru/moskva/muzykalnye_instrumenty?cd=1&q=%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%B3%D0%B8%D1%82%D0%B0%D1%80%D0%B0")
+def get_avito(search_string):
+    html = get_html("https://www.avito.ru/moskva/muzykalnye_instrumenty?cd=1", search_string)
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         all_guitars = soup.find_all('div', class_='iva-item-root-_lk9K photo-slider-slider-S15A_ iva-item-list-rfgcH iva-item-redesign-rop6P iva-item-responsive-_lbhG items-item-My3ih items-listItem-Gd1jN js-catalog-item-enum')

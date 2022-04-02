@@ -14,8 +14,8 @@ def start(update: Update, context: CallbackContext):
     text_greeting = "Привет, я бот для поиска объявлений по продаже гитар!\nЧто я умею:\n- искать гитару по определённым характеристикам\n- присылать новые объявления, нужно только меня об этом попросить)))\n- если ждёшь гитару мечты, я пришлю обявление, когда появится!"
     update.message.reply_text(text_greeting, reply_markup=my_keyboard)
 
-def get_guitar_message(pages):
-    guitars = get_avito()
+def get_guitar_message(pages, search_string):
+    guitars = get_avito(search_string)
     dict_list = ''
     for guitar in guitars[pages:pages+10]:
         name_=guitar['name_guitar']
@@ -28,14 +28,14 @@ def get_guitar_message(pages):
 
 def search(update: Update, context: CallbackContext):
     pages = 0
-    dict_list = get_guitar_message(pages)
+    dict_list = get_guitar_message(pages, 'электрогитара')
     # print(len(dict_list))
     context.user_data["pages"] = pages+10
     update.message.reply_text(dict_list, reply_markup= ReplyKeyboardMarkup([['Далее']]))
 
 def search_next(update: Update, context: CallbackContext):
     pages = context.user_data["pages"]
-    dict_list = get_guitar_message(pages)
+    dict_list = get_guitar_message(pages, 'электрогитара')
     # print(len(dict_list))
     context.user_data["pages"] = pages+10
     update.message.reply_text(dict_list, reply_markup= ReplyKeyboardMarkup([['Далее']]))
@@ -49,8 +49,8 @@ def dream(update: Update, context: CallbackContext):
 
 def talk_to_me(update, context):
     text = update.message.text
-    print(text)
-    update.message.reply_text(text)
+    dict_list = get_guitar_message(0, text)
+    update.message.reply_text(dict_list)
 
 def main():
     mybot = Updater (bot_token, use_context=True)
