@@ -2,35 +2,45 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_html(url, search_string):
+#     proxies = {
+#   'http': 'http://188.170.233.109:3128',
+# }
+    HEADERS ={ "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","user-agent"
+:"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36"}
     try:
-        result = requests.get(url, params = {'q': search_string})
+        result = requests.get(url, params = {'q': search_string}, headers=HEADERS)
+        print(dir(result))
+        print(result.url)
+        # print(result.text)
         result.raise_for_status()
         return result.text
-    except(requests.RequestException, ValueError):
+    except(requests.RequestException, ValueError) as exec:
+        print(exec)
         print("Сетевая ошибка")
         return False
 
 def get_avito(search_string):
-    html = get_html("https://www.avito.ru/moskva/muzykalnye_instrumenty?cd=1", search_string)
+    html = get_html("https://www.muztorg.ru/category/elektrogitary", search_string)
     if html:
         soup = BeautifulSoup(html, 'html.parser')
-        all_guitars = soup.find_all('div', class_='iva-item-root-_lk9K photo-slider-slider-S15A_ iva-item-list-rfgcH iva-item-redesign-rop6P iva-item-responsive-_lbhG items-item-My3ih items-listItem-Gd1jN js-catalog-item-enum')
+        all_guitars = soup.find_all('section', class_='product-thumbnail')
         print(len(all_guitars))
         result_find = []
         for guitar in all_guitars:
-            name_guitar = guitar.find('h3', class_="title-root-zZCwT iva-item-title-py3i_ title-listRedesign-_rejR title-root_maxHeight-X6PsH text-text-LurtD text-size-s-BxGpL text-bold-SinUO").text
-            price_guitar = guitar.find('span', class_="price-text-_YGDY text-text-LurtD text-size-s-BxGpL").text.replace('\xa0', '')
-            name_saler = guitar.find('div', class_= "style-title-_wK5H text-text-LurtD text-size-s-BxGpL").text
-            place_guitar = guitar.find('div', class_= "geo-georeferences-SEtee text-text-LurtD text-size-s-BxGpL").text.replace('\xa0', '')
+            name_guitar = guitar.find('div', class_="title").text.strip()
+            price_guitar = guitar.find('p', class_="price").getText().replace(' ', '')
+            available_guitar = guitar.find('div', class_= "product-existence").text.strip()
+            bonus_guitar = guitar.find('span', class_= "product-add-bonus").text.strip()
+            
             result_find.append({
                 "name_guitar": name_guitar,
                 "price_guitar": price_guitar,
-                "name_saler": name_saler,
-                "place_guitar": place_guitar
+                "available_guitar": available_guitar,
+                "bonus_guitar": bonus_guitar
             })
-        print(result_find)
+        # print(result_find)
         return result_find
 
 if __name__ == "__main__":
-    get_avito()
+    get_avito('электрогитара')
     
