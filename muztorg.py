@@ -19,7 +19,7 @@ def get_html(url, search_string):
         print("Сетевая ошибка")
         return False
 
-def get_avito(search_string):
+def get_muztorg(search_string):
     html = get_html("https://www.muztorg.ru/category/elektrogitary", search_string)
     if html:
         soup = BeautifulSoup(html, 'html.parser')
@@ -42,5 +42,5 @@ def get_avito(search_string):
         return result_find
 
 if __name__ == "__main__":
-    get_avito('электрогитара')
+    get_muztorg('электрогитара')
     
