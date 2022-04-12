@@ -28,7 +28,7 @@ def get_muztorg(search_string):
         result_find = []
         for guitar in all_guitars:
             name_guitar = guitar.find('div', class_="title").text.strip()
-            price_guitar = guitar.find('p', class_="price").getText().replace(' ', '')
+            price_guitar = guitar.find('p', class_="price").text.strip()
             available_guitar = guitar.find('div', class_= "product-existence").text.strip()
             bonus_guitar = guitar.find('span', class_= "product-add-bonus").text.strip()
             
