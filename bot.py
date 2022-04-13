@@ -1,9 +1,9 @@
 import logging
 from token_bot import bot_token
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
-from model_search_gitar import invite_model_search, search_name
-from handlers import start, search_next, search
-from keyboard import get_main_keyboard
+from model_search_gitar import invite_model_search
+from handlers import search_by_model, start, search_next, search
+from handlers import get_main_keyboard
 logging.basicConfig(filename='bot.log', level=logging.INFO)
 
 def main():
@@ -16,7 +16,7 @@ def main():
             MessageHandler(Filters.regex('^(Начать поиск)$'), invite_model_search)
             ],
         states={
-            "model":[MessageHandler(Filters.text, search_name)]
+            "model":[MessageHandler(Filters.text, search_by_model)]
         },
         fallbacks=[]
     )
