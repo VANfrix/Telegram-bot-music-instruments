@@ -128,4 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#token bot
 token_bot.py
+#data base registration
+registration_db.py
