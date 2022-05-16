@@ -23,6 +23,7 @@ def search_by_model(update: Update, context: CallbackContext):
     text = update.message.text
     dict_list = get_guitar_message(0, text)
     update.message.reply_text(dict_list)
+    print(text)
 
 def get_main_keyboard(update: Update, context: CallbackContext):
     update.message.reply_text('Основное меню', reply_markup=main_keyboard())

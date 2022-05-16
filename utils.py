@@ -16,3 +16,4 @@ def get_guitar_message(pages, search_string):
         search_new = f'\t{name_}\n цена {price_}\n {available_}\n бонусы {bonus_}\n ссылка {link_}\n\n'
         dict_list += search_new
     return dict_list
+
