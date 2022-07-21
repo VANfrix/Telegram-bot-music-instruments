@@ -1,7 +1,7 @@
 import logging
 from token_bot import bot_token
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
-from model_search_gitar import invite_model_search
+from search_gitar_by_model import invite_model_search
 from handlers import search_by_model, start, search_next, search
 from handlers import get_main_keyboard
 logging.basicConfig(filename='bot.log', level=logging.INFO)

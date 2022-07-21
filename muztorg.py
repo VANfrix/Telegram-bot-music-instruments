@@ -41,7 +41,7 @@ def get_muztorg(search_string, page=0):
                 "link_guitar": link_guitar
             })          
         return result_find
-
+1
 if __name__ == "__main__":
     get_muztorg('электрогитара')
     

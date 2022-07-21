@@ -1,8 +1,8 @@
 import email
 from db import db_session
 
-from models_ import User
+from models_DB import User
 
-user = User(name='Мария Сидорова', salary=150000, email='msidorova@yandex.ru')
+user = User(name='Умар Махнов', salary=750000, email='Mah@yandex.ru')
 db_session.add(user)
 db_session.commit()

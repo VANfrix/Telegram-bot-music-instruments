@@ -1,4 +1,4 @@
-from models_ import User
+from models_DB import User
 
 user = User.query.first()
 print(user)
