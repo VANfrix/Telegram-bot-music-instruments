@@ -1,6 +1,6 @@
-from telegram.ext import  CallbackContext
+from telegram.ext import CallbackContext
 from telegram import ReplyKeyboardMarkup, Update
-from keyboard import main_keyboard
+from key_board import main_keyboard
 from utils import get_guitar_message
 
 def start(update: Update, context: CallbackContext):

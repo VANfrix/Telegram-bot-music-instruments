@@ -7,6 +7,7 @@ def get_guitar_message(pages, search_string):
     while pages>24:
         pages=pages-24
     print(pages)
+
     for guitar in guitars[pages:pages+12]:
         name_=guitar['name_guitar']
         price_=guitar['price_guitar']
@@ -16,4 +17,3 @@ def get_guitar_message(pages, search_string):
         search_new = f'\t{name_}\n цена {price_}\n {available_}\n бонусы {bonus_}\n ссылка {link_}\n\n'
         dict_list += search_new
     return dict_list
-

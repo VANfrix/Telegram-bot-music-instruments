@@ -30,18 +30,21 @@ def get_muztorg(search_string, page=0):
             price_guitar = guitar.find('p', class_="price").text.strip().replace(' ', '')
             available_guitar = guitar.find('div', class_= "product-existence").text.strip()
             bonus_guitar = guitar.find('span', class_= "product-add-bonus").text.strip()
-            link_guitar = guitar.find('div', class_='product-pictures').find_all('a')[1].get('href')
+            picture_guitar = guitar.find('div', class_='product-pictures').find_all('a')[1].get('href')
             link_guitar = f"https://www.muztorg.ru/{link_guitar}"
             
+            print(result_find)
             result_find.append({
                 "name_guitar": name_guitar,
                 "price_guitar": price_guitar,
                 "available_guitar": available_guitar,
                 "bonus_guitar": bonus_guitar,
+                "picture_guitar":picture_guitar,
                 "link_guitar": link_guitar
-            })          
+            })
+                    
         return result_find
-1
+
 if __name__ == "__main__":
     get_muztorg('электрогитара')
     

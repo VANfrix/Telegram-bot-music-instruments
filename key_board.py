@@ -1,5 +1,5 @@
 from telegram import ReplyKeyboardMarkup, Update
-from telegram.ext import  CallbackContext
+from telegram.ext import CallbackContext
 
 def main_keyboard():
     keyboard = ReplyKeyboardMarkup([
